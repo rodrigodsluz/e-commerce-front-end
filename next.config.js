@@ -6,6 +6,6 @@ module.exports = withImages({
 
 module.exports = {
   env: {
-    REACT_APP_API_URL: 'http://localhost:3333',
+    REACT_APP_API_URL: 'https://lifeasier-back-end.herokuapp.com',
   },
 };

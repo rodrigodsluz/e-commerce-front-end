@@ -47,7 +47,7 @@ const Navbar = () => {
     window.addEventListener('resize', showButton);
   });
 
-  const isActive = (path) => {
+  const isActive = path => {
     if (router.pathname === path) {
       return { color: 'red' };
     }
@@ -66,7 +66,7 @@ const Navbar = () => {
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </MobileIcon>
-            <NavMenu onClick={handleClick} click={click}>
+            <NavMenu onClick={handleClick} /* click={click} */>
               <NavItem>
                 <Link href="/">
                   <NavLinks onClick={closeMobileMenu}>
@@ -164,9 +164,10 @@ const Navbar = () => {
               {isAuthenticated() && (
                 <NavItem>
                   <SignoutBtn
-                    onClick={() => signout(() => {
-                        router.push('/');
-                      })
+                    onClick={() =>
+                      signout(() => {
+                      router.push('/');
+                    })
                     }
                   >
                     <TextMenu style={{ cursor: 'pointer', color: '#fff' }}>

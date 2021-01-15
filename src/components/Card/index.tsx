@@ -11,50 +11,50 @@ const Card = ({
   showAddToCartButton = true,
   cartUpdate = false,
   showRemoveProductButton = false,
-  setRun = (f) => f,
+  setRun = f => f,
   run = undefined,
 }) => {
   const router = useRouter();
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
-  const showViewButton = showViewProductButton =>
-    showViewProductButton && (
-      <Link href={`/product/${product._id}`} className="mr-2">
+  const showViewButton = (showViewProductButton) => showViewProductButton && (
+      <Link href={`/product/${product._id}`}>
         <button className="btn btn-outline-primary mt-2 mb-2 card-btn-1">
           View Product
         </button>
       </Link>
-  );
+    );
 
   const addToCart = () => {
     // console.log('added');
     addItem(product, setRedirect(true));
   };
 
-  const shouldRedirect = (redirect) => {
+  const shouldRedirect = redirect => {
     if (redirect) {
       router.push('/cart');
     }
   };
 
-  const showAddToCartBtn = (showAddToCartButton) => showAddToCartButton && (
+  const showAddToCartBtn = showAddToCartButton =>
+    showAddToCartButton && (
       <button
         onClick={addToCart}
         className="btn btn-outline-warning mt-2 mb-2 card-btn-1  "
       >
         Add to cart
       </button>
-    );
+  );
 
-  const showStock = quantity =>
+  const showStock = (quantity) =>
     // ESlint Son of a bitch
-    quantity > 0 ? (
+    (quantity > 0 ? (
       <span className="badge badge-primary badge-pill">In Stock </span>
     ) : (
       <span className="badge badge-primary badge-pill">Out of Stock </span>
-    );
+    ));
 
-  const handleChange = productId => event => {
+  const handleChange = (productId) => (event) => {
     setRun(!run); // run useEffect in parent Cart
     setCount(event.target.value < 1 ? 1 : event.target.value);
     if (event.target.value >= 1) {
@@ -62,8 +62,7 @@ const Card = ({
     }
   };
 
-  const showCartUpdateOptions = cartUpdate =>
-    cartUpdate && (
+  const showCartUpdateOptions = (cartUpdate) => cartUpdate && (
       <div>
         <div className="input-group mb-3">
           <div className="input-group-prepend">
@@ -77,10 +76,9 @@ const Card = ({
           />
         </div>
       </div>
-  );
+    );
 
-  const showRemoveButton = showRemoveProductButton =>
-    showRemoveProductButton && (
+  const showRemoveButton = (showRemoveProductButton) => showRemoveProductButton && (
       <button
         onClick={() => {
           removeItem(product._id);
@@ -90,7 +88,7 @@ const Card = ({
       >
         Remove Product
       </button>
-  );
+    );
 
   return (
     <div className="card">

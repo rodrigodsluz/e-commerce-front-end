@@ -138,7 +138,7 @@ const Navbar = () => {
                     {button ? (
                       <Link href="/signup">
                         <NavBtnLink>
-                          <Button style={isActive('/signup')} primary>
+                          <Button style={isActive('/signup')} /* primary */>
                             SIGN UP
                           </Button>
                         </NavBtnLink>
@@ -149,7 +149,7 @@ const Navbar = () => {
                           <Button
                             style={isActive('/signup')}
                             onClick={closeMobileMenu}
-                            fontBig
+                            /* fontBig */
                             primary
                           >
                             SIGN UP

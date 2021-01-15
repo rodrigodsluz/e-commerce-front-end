@@ -7,7 +7,7 @@ const Signin = () => {
   const [values, setValues] = useState({
     email: 'ryan@gmail.com',
     password: 'rrrrrr9',
-    error: '',
+    error: false,
     loading: false,
     redirectToReferrer: false,
   });
@@ -16,11 +16,11 @@ const Signin = () => {
  email, password, loading, error, redirectToReferrer, } = values;
   const { user } = isAuthenticated();
 
-  const handleChange = (name) => (event) => {
+  const handleChange = (name: string) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const clickSubmit = (event) => {
+  const clickSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
     signin({ email, password }).then((data) => {

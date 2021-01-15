@@ -34,16 +34,10 @@ const Product = (props) => {
   }, [props]);
 
   return (
-    <Layout
-      title={product && product.name}
-      description={
-        product && product.description && product.description.substring(0, 100)
-      }
-      className="container-fluid"
-    >
+    <Layout title="eae" description="eae" className="container-fluid">
       <div className="row">
         <div className="col-8">
-          {product && product.description && (
+          {product /* && product.description  */ && (
             <Card product={product} showViewProductButton={false} />
           )}
         </div>

@@ -44,8 +44,8 @@ const UpdateProduct = ({ match }) => {
     formData,
   } = values;
 
-  const init = (productId) => {
-    getProduct(productId).then((data) => {
+  const init = productId => {
+    getProduct(productId).then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -58,7 +58,7 @@ const UpdateProduct = ({ match }) => {
           category: data.category._id,
           shipping: data.shipping,
           quantity: data.quantity,
-          formData: new FormData(),
+          // formData: new FormData(),
         });
         // load categories
         initCategories();
@@ -68,7 +68,7 @@ const UpdateProduct = ({ match }) => {
 
   // load categories and set form data
   const initCategories = () => {
-    getCategories().then((data) => {
+    getCategories().then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -81,17 +81,17 @@ const UpdateProduct = ({ match }) => {
     init(router.query.id);
   }, []);
 
-  const handleChange = (name) => (event) => {
+  const handleChange = name => event => {
     const value = name === 'photo' ? event.target.files[0] : event.target.value;
-    formData.set(name, value);
+    // formData.set(name, value);
     setValues({ ...values, [name]: value });
   };
 
-  const clickSubmit = (event) => {
+  const clickSubmit = event => {
     event.preventDefault();
-    setValues({ ...values, error: '', loading: true });
+    setValues({ ...values, error: false, loading: true });
 
-    updateProduct(router.query.id, user._id, token, formData).then((data) => {
+    updateProduct(router.query.id, user._id, token, formData).then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -158,8 +158,8 @@ const UpdateProduct = ({ match }) => {
         <label className="text-muted">Category</label>
         <select onChange={handleChange('category')} className="form-control">
           <option>Please select</option>
-          {categories
-            && categories.map((c, i) => (
+          {categories &&
+            categories.map((c, i) => (
               <option key={i} value={c._id}>
                 {c.name}
               </option>
@@ -208,11 +208,12 @@ const UpdateProduct = ({ match }) => {
     </div>
   );
 
-  const showLoading = () => loading && (
+  const showLoading = () =>
+    loading && (
       <div className="alert alert-success">
         <h2>Loading...</h2>
       </div>
-    );
+  );
 
   const redirectUser = () => {
     if (redirectToProfile) {
@@ -226,6 +227,7 @@ const UpdateProduct = ({ match }) => {
     <Layout
       title="Add a new product"
       description={`G'day ${user.name}, ready to add a new product?`}
+      className="color: red"
     >
       <div className="row">
         <div className="col-md-8 offset-md-2">

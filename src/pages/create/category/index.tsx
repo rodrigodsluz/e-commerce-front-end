@@ -12,21 +12,21 @@ const AddCategory = () => {
   // destructure user and token from localstorage
   const { user, token } = isAuthenticated();
 
-  const handleChange = e => {
-    setError('');
+  const handleChange = (e) => {
+    setError(false);
     setName(e.target.value);
   };
 
-  const clickSubmit = e => {
+  const clickSubmit = (e) => {
     e.preventDefault();
-    setError('');
+    setError(false);
     setSuccess(false);
     // make request to api to create category
-    createCategory(user._id, token, { name }).then(data => {
+    createCategory(user._id, token, { name }).then((data) => {
       if (data.error) {
         setError(data.error);
       } else {
-        setError('');
+        setError(false);
         setSuccess(true);
       }
     });
@@ -63,9 +63,7 @@ const AddCategory = () => {
 
   const goBack = () => (
     <div className="mt-5">
-      <Link href="/admin/dashboard" className="text-warning">
-        Back to Dashboard
-      </Link>
+      <Link href="/admin/dashboard">Back to Dashboard</Link>
     </div>
   );
 
@@ -73,6 +71,7 @@ const AddCategory = () => {
     <Layout
       title="Add a new category"
       description={`G'day ${user.name}, ready to add a new category?`}
+      className="color: red"
     >
       <div className="row">
         <div className="col-md-8 offset-md-2">

@@ -17,12 +17,12 @@ const Profile = ({ match }) => {
   });
 
   const { token } = isAuthenticated();
-  const { name, email, password, error, success
-} = values;
+  const {
+ name, email, password, error, success, } = values;
 
-  const init = userId => {
+  const init = (userId) => {
     // console.log(userId);
-    read(userId, token).then(data => {
+    read(userId, token).then((data) => {
       if (data.error) {
         setValues({ ...values, error: true });
       } else {
@@ -36,13 +36,13 @@ const Profile = ({ match }) => {
     // init(match.params.userId);
   }, []);
 
-  const handleChange = name => e => {
+  const handleChange = (name) => (e: { target: { value: any } }) => {
     setValues({ ...values, error: false, [name]: e.target.value });
   };
 
-  const clickSubmit = e => {
+  const clickSubmit = (e) => {
     e.preventDefault();
-    update(router.query.id, token, { name, email, password }).then(data => {
+    update(router.query.id, token, { name, email, password }).then((data) => {
       if (data.error) {
         // console.log(data.error);
         alert(data.error);
@@ -59,7 +59,7 @@ const Profile = ({ match }) => {
     });
   };
 
-  const redirectUser = success => {
+  const redirectUser = (success) => {
     if (success) {
       router.push('/cart');
     }

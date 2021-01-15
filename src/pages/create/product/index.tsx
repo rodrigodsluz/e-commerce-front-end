@@ -38,14 +38,14 @@ const AddProduct = () => {
 
   // load categories and set form data
   const init = () => {
-    getCategories().then(data => {
+    getCategories().then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
         setValues({
           ...values,
           categories: data,
-          formData: new FormData(),
+          // formData: new FormData(),
         });
       }
     });
@@ -55,17 +55,17 @@ const AddProduct = () => {
     init();
   }, []);
 
-  const handleChange = name => event => {
+  const handleChange = (name) => (event) => {
     const value = name === 'photo' ? event.target.files[0] : event.target.value;
-    formData.set(name, value);
+    // formData.set(name, value);
     setValues({ ...values, [name]: value });
   };
 
-  const clickSubmit = event => {
+  const clickSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: '', loading: true });
 
-    createProduct(user._id, token, formData).then(data => {
+    createProduct(user._id, token, formData).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -130,8 +130,8 @@ const AddProduct = () => {
         <label className="text-muted">Category</label>
         <select onChange={handleChange('category')} className="form-control">
           <option>Please select</option>
-          {categories &&
-            categories.map((c, i) => (
+          {categories
+            && categories.map((c, i) => (
               <option key={i} value={c._id}>
                 {c.name}
               </option>
@@ -180,17 +180,17 @@ const AddProduct = () => {
     </div>
   );
 
-  const showLoading = () =>
-    loading && (
+  const showLoading = () => loading && (
       <div className="alert alert-success">
         <h2>Loading...</h2>
       </div>
-  );
+    );
 
   return (
     <Layout
       title="Add a new product"
       description={`G'day ${user.name}, ready to add a new product?`}
+      className="color: red"
     >
       <div className="row">
         <div className="col-md-8 offset-md-2">

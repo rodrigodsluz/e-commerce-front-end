@@ -8,21 +8,21 @@ const Signup = () => {
     name: '',
     email: '',
     password: '',
-    error: '',
+    error: false,
     success: false,
   });
 
-  const {
- name, email, password, success, error, } = values;
+  const { name, email, password, success, error 
+} = values;
 
-  const handleChange = (name) => (event) => {
+  const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const clickSubmit = (event) => {
+  const clickSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     setValues({ ...values, error: false });
-    signup({ name, email, password }).then((data) => {
+    signup({ name, email, password }).then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error, success: false });
       } else {
@@ -31,7 +31,7 @@ const Signup = () => {
           name: '',
           email: '',
           password: '',
-          error: '',
+          error: false,
           success: true,
         });
       }

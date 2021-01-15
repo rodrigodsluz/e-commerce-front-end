@@ -6,8 +6,7 @@ import { isAuthenticated } from '../../../api/auth';
 const AdminDashboard = () => {
   const {
     user: {
- _id, name, email, role
-},
+ _id, name, email, role, },
   } = isAuthenticated();
 
   const adminLinks = () => (
@@ -15,24 +14,16 @@ const AdminDashboard = () => {
       <h4 className="card-header">Admin Links</h4>
       <ul className="list-group">
         <li className="list-group-item">
-          <Link className="nav-link" href="/create/category">
-            Create Category
-          </Link>
+          <Link href="/create/category">Create Category</Link>
         </li>
         <li className="list-group-item">
-          <Link className="nav-link" href="/create/product">
-            Create Product
-          </Link>
+          <Link href="/create/product">Create Product</Link>
         </li>
         <li className="list-group-item">
-          <Link className="nav-link" href="/admin/orders">
-            View Orders
-          </Link>
+          <Link href="/admin/orders">View Orders</Link>
         </li>
         <li className="list-group-item">
-          <Link className="nav-link" href="/admin/products">
-            Manage Products
-          </Link>
+          <Link href="/admin/products">Manage Products</Link>
         </li>
       </ul>
     </div>

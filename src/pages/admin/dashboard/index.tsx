@@ -5,7 +5,7 @@ import { isAuthenticated } from '../../../api/auth';
 
 const AdminDashboard = () => {
   const {
-    user: { name, email, role },
+    user: { email, role },
   } = isAuthenticated();
 
   const adminLinks = () => (
@@ -32,7 +32,7 @@ const AdminDashboard = () => {
     <div className="card mb-5">
       <h3 className="card-header">User Information</h3>
       <ul className="list-group">
-        <li className="list-group-item">{name}</li>
+        <li className="list-group-item">aaa</li>
         <li className="list-group-item">{email}</li>
         <li className="list-group-item">
           {role === 1 ? 'Admin' : 'Registered User'}
@@ -44,7 +44,7 @@ const AdminDashboard = () => {
   return (
     <Layout
       title="Dashboard"
-      description={`G'day ${name}!`}
+      description={"G'day aaa!"}
       className="container-fluid"
     >
       <div className="row">

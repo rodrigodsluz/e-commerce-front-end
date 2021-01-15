@@ -47,7 +47,7 @@ const Navbar = () => {
     window.addEventListener('resize', showButton);
   });
 
-  const isActive = path => {
+  const isActive = (path) => {
     if (router.pathname === path) {
       return { color: 'red' };
     }
@@ -150,7 +150,7 @@ const Navbar = () => {
                             style={isActive('/signup')}
                             onClick={closeMobileMenu}
                             /* fontBig */
-                            primary
+                            /* primary */
                           >
                             SIGN UP
                           </Button>
@@ -164,10 +164,9 @@ const Navbar = () => {
               {isAuthenticated() && (
                 <NavItem>
                   <SignoutBtn
-                    onClick={() =>
-                      signout(() => {
-                      router.push('/');
-                    })
+                    onClick={() => signout(() => {
+                        router.push('/');
+                      })
                     }
                   >
                     <TextMenu style={{ cursor: 'pointer', color: '#fff' }}>

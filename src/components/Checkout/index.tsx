@@ -11,7 +11,7 @@ import { isAuthenticated } from '../../api/auth';
 // import "braintree-web"; // not using this package
 // 4005519200000004, 12 / 21
 
-const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
+const Checkout = ({ products, setRun = f => f, run = undefined }) => {
   const [data, setData] = useState({
     loading: false,
     success: false,
@@ -25,7 +25,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
   const token = isAuthenticated() && isAuthenticated().token;
 
   const getToken = (userId, token: any) => {
-    getBraintreeClientToken(userId, token).then((data) => {
+    getBraintreeClientToken(userId, token).then(data => {
       if (data.error) {
         console.log(data.error);
         setData({ ...data, error: data.error });
@@ -40,14 +40,16 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
     getToken(userId, token);
   }, []);
 
-  const handleAddress = (event) => {
+  const handleAddress = event => {
     setData({ ...data, address: event.target.value });
   };
 
-  const getTotal = () => products.reduce(
-      (currentValue, nextValue) => currentValue + nextValue.count * nextValue.price,
-      0,
-    );
+  const getTotal = () =>
+    products.reduce(
+    (currentValue, nextValue) =>
+        currentValue + nextValue.count * nextValue.price,
+    0,
+  );
 
   const showCheckout = () => {
     const a = 3;
@@ -63,13 +65,13 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
   const deliveryAddress = data.address;
 
   const buy = () => {
-    setData({ loading: true });
+    // setData({ loading: true });
     // send the nonce to your server
     // nonce = data.instance.requestPaymentMethod()
     let nonce;
     const getNonce = data.instance
       .requestPaymentMethod()
-      .then((data) => {
+      .then(data => {
         // console.log(data);
         nonce = data.nonce;
         // once you have nonce (card type, card number) send nonce as 'paymentMethodNonce'
@@ -85,7 +87,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
         };
 
         processPayment(userId, token, paymentData)
-          .then((response) => {
+          .then(response => {
             console.log(response);
             // empty cart
             // create order
@@ -98,7 +100,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
             };
 
             createOrder(userId, token, createOrderData)
-              .then((response) => {
+              .then(response => {
                 emptyCart(() => {
                   setRun(!run); // run useEffect in parent Cart
                   console.log('payment success and empty cart');
@@ -108,17 +110,17 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
                   });
                 });
               })
-              .catch((error) => {
+              .catch(error => {
                 console.log(error);
                 setData({ loading: false });
               });
           })
-          .catch((error) => {
+          .catch(error => {
             console.log(error);
             setData({ loading: false });
           });
       })
-      .catch((error) => {
+      .catch(error => {
         // console.log("dropin error: ", error);
         setData({ ...data, error: error.message });
       });
@@ -145,7 +147,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
                 flow: 'vault',
               },
             }}
-            onInstance={(instance) => (data.instance = instance)}
+            onInstance={instance => (data.instance = instance)}
           />
           <button onClick={buy} className="btn btn-success btn-block">
             Pay
@@ -155,7 +157,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
     </div>
   );
 
-  const showError = (error) => (
+  const showError = error => (
     <div
       className="alert alert-danger"
       style={{ display: error ? '' : 'none' }}
@@ -164,7 +166,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
     </div>
   );
 
-  const showSuccess = (success) => (
+  const showSuccess = success => (
     <div
       className="alert alert-info"
       style={{ display: success ? '' : 'none' }}
@@ -173,7 +175,8 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
     </div>
   );
 
-  const showLoading = (loading) => loading && <h2 className="text-danger">Loading...</h2>;
+  const showLoading = loading =>
+    loading && <h2 className="text-danger">Loading...</h2>;
 
   return (
     <div>

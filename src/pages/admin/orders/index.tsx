@@ -10,29 +10,29 @@ import {
 } from '../../../api/apiAdmin';
 
 const Orders = () => {
-  const [orders, setOrders] = useState([]);
+  // const [orders, setOrders] = useState([]);
   const [statusValues, setStatusValues] = useState([]);
 
   const { user, token } = isAuthenticated();
 
   const loadOrders = () => {
-    listOrders(user._id, token).then(data => {
+    /* listOrders(user._id, token).then(data => {
       if (data.error) {
         console.log(data.error);
       } else {
         setOrders(data);
       }
-    });
+    }); */
   };
 
   const loadStatusValues = () => {
-    getStatusValues(user._id, token).then(data => {
+    /* getStatusValues(user._id, token).then((data) => {
       if (data.error) {
         console.log(data.error);
       } else {
         setStatusValues(data);
       }
-    });
+    }); */
   };
 
   useEffect(() => {
@@ -40,15 +40,14 @@ const Orders = () => {
     loadStatusValues();
   }, []);
 
-  const showOrdersLength = () => {
-    if (orders.length > 0) {
+  const showOrdersLength = () => (
+    /*  if (orders.length > 0) {
       return (
         <h1 className="text-danger display-2">Total orders: {orders.length}</h1>
       );
-    }
-    return <h1 className="text-danger">No orders</h1>;
-  };
-
+    } */
+    <h1 className="text-danger">No orders</h1>
+  );
   const showInput = (key, value) => (
     <div className="input-group mb-2 mr-sm-2">
       <div className="input-group-prepend">
@@ -59,13 +58,13 @@ const Orders = () => {
   );
 
   const handleStatusChange = (e, orderId) => {
-    updateOrderStatus(user._id, token, orderId, e.target.value).then(data => {
+    /* updateOrderStatus(user._id, token, orderId, e.target.value).then((data) => {
       if (data.error) {
         console.log('Status update failed');
       } else {
         loadOrders();
       }
-    });
+    }); */
   };
 
   const showStatus = (o: any) => (
@@ -73,7 +72,7 @@ const Orders = () => {
       <h3 className="mark mb-4">Status: {o.status}</h3>
       <select
         className="form-control"
-        onChange={e => handleStatusChange(e, o._id)}
+        /* onChange={(e) => handleStatusChange(e, o._id)} */
       >
         <option>Update Status</option>
         {statusValues.map((status, index) => (
@@ -95,7 +94,7 @@ const Orders = () => {
         <div className="col-md-8 offset-md-2">
           {showOrdersLength()}
 
-          {orders.map((o, oIndex) => (
+          {/*  {orders.map((o, oIndex) => (
             <div
               className="mt-5"
               key={oIndex}
@@ -140,7 +139,7 @@ const Orders = () => {
                 </div>
               ))}
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </Layout>

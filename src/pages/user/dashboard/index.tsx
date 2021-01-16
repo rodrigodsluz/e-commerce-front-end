@@ -8,14 +8,14 @@ import { getPurchaseHistory } from '../../../api/apiUser';
 
 const Dashboard = () => {
   const [history, setHistory] = useState([]);
-  const {
-    user: { _id, name, email, role 
+  /*  const {
+    user: { _id, name, email, role
 },
   } = isAuthenticated();
-  const { token } = isAuthenticated();
+  const { token } = isAuthenticated(); */
 
-  const init = (userId, token) => {
-    getPurchaseHistory(userId, token).then((data) => {
+  /*   const init = (userId, token) => {
+    getPurchaseHistory(userId, token).then(data => {
       if (data.error) {
         console.log(data.error);
       } else {
@@ -26,7 +26,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     init(_id, token);
-  }, []);
+  }, []); */
 
   const userLinks = () => (
     <div className="card">
@@ -35,9 +35,9 @@ const Dashboard = () => {
         <li className="list-group-item">
           <Link href="/cart">My Cart</Link>
         </li>
-        <li className="list-group-item">
+        {/*  <li className="list-group-item">
           <Link href={`/profile/${_id}`}>Update Profile</Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
@@ -46,16 +46,16 @@ const Dashboard = () => {
     <div className="card mb-5">
       <h3 className="card-header">User Information</h3>
       <ul className="list-group">
-        <li className="list-group-item">{name}</li>
-        <li className="list-group-item">{email}</li>
-        <li className="list-group-item">
+        <li className="list-group-item">aa</li>
+        <li className="list-group-item">eee</li>
+        {/* <li className="list-group-item">
           {role === 1 ? 'Admin' : 'Registered User'}
-        </li>
+        </li> */}
       </ul>
     </div>
   );
 
-  const purchaseHistory = (history) => (
+  const purchaseHistory = history => (
     <div className="card mb-5">
       <h3 className="card-header">Purchase history</h3>
       <ul className="list-group">
@@ -97,7 +97,7 @@ const Dashboard = () => {
   return (
     <Layout
       title="Dashboard"
-      description={`G'day ${name}!`}
+      description={"G'day aa!"}
       className="container-fluid"
     >
       <div className="row">

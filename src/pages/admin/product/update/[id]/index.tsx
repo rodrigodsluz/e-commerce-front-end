@@ -28,8 +28,8 @@ const UpdateProduct = ({ match }) => {
   });
   const [categories, setCategories] = useState([]);
 
-  const { user, token } = isAuthenticated();
-  const {
+  /*   const { user, token } = isAuthenticated();
+   */ const {
     name,
     description,
     price,
@@ -44,8 +44,8 @@ const UpdateProduct = ({ match }) => {
     formData,
   } = values;
 
-  const init = productId => {
-    getProduct(productId).then(data => {
+  const init = (productId) => {
+    getProduct(productId).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -68,7 +68,7 @@ const UpdateProduct = ({ match }) => {
 
   // load categories and set form data
   const initCategories = () => {
-    getCategories().then(data => {
+    getCategories().then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -81,17 +81,17 @@ const UpdateProduct = ({ match }) => {
     init(router.query.id);
   }, []);
 
-  const handleChange = name => event => {
+  const handleChange = (name) => (event) => {
     const value = name === 'photo' ? event.target.files[0] : event.target.value;
     // formData.set(name, value);
     setValues({ ...values, [name]: value });
   };
 
-  const clickSubmit = event => {
+  const clickSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
 
-    updateProduct(router.query.id, user._id, token, formData).then(data => {
+    /* updateProduct(router.query.id, user._id, token, formData).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -108,7 +108,7 @@ const UpdateProduct = ({ match }) => {
           createdProduct: data.name,
         });
       }
-    });
+    }); */
   };
 
   const newPostForm = () => (
@@ -158,12 +158,12 @@ const UpdateProduct = ({ match }) => {
         <label className="text-muted">Category</label>
         <select onChange={handleChange('category')} className="form-control">
           <option>Please select</option>
-          {categories &&
+          {/* {categories &&
             categories.map((c, i) => (
               <option key={i} value={c._id}>
                 {c.name}
               </option>
-            ))}
+            ))} */}
         </select>
       </div>
 
@@ -208,12 +208,11 @@ const UpdateProduct = ({ match }) => {
     </div>
   );
 
-  const showLoading = () =>
-    loading && (
+  const showLoading = () => loading && (
       <div className="alert alert-success">
         <h2>Loading...</h2>
       </div>
-  );
+    );
 
   const redirectUser = () => {
     if (redirectToProfile) {
@@ -226,7 +225,7 @@ const UpdateProduct = ({ match }) => {
   return (
     <Layout
       title="Add a new product"
-      description={`G'day ${user.name}, ready to add a new product?`}
+      description={"G'dayaa, ready to add a new product?"}
       className="color: red"
     >
       <div className="row">

@@ -18,7 +18,7 @@ const Shop = () => {
   const [filteredResults, setFilteredResults] = useState([]);
 
   const init = () => {
-    getCategories().then((data) => {
+    getCategories().then(data => {
       if (data.error) {
         setError(data.error);
       } else {
@@ -27,9 +27,9 @@ const Shop = () => {
     });
   };
 
-  const loadFilteredResults = (newFilters) => {
+  const loadFilteredResults = newFilters => {
     // console.log(newFilters);
-    getFilteredProducts(skip, limit, newFilters).then((data) => {
+    getFilteredProducts(skip, limit, newFilters).then(data => {
       if (data.error) {
         setError(data.error);
       } else {
@@ -44,7 +44,7 @@ const Shop = () => {
     console.log(error);
     const toSkip = skip + limit;
     // console.log(newFilters);
-    getFilteredProducts(toSkip, limit, myFilters.filters).then((data) => {
+    getFilteredProducts(toSkip, limit, myFilters.filters).then(data => {
       if (data.error) {
         setError(data.error);
       } else {
@@ -55,12 +55,13 @@ const Shop = () => {
     });
   };
 
-  const loadMoreButton = () => size > 0 &&
-    size >= limit && (
+  const loadMoreButton = () =>
+    size > 0
+    && size >= limit && (
       <button onClick={loadMore} className="btn btn-warning mb-5">
         Load more
       </button>
-    );
+  );
 
   useEffect(() => {
     init();
@@ -80,7 +81,7 @@ const Shop = () => {
     setMyFilters(newFilters);
   };
 
-  const handlePrice = (value) => {
+  const handlePrice = value => {
     const data = prices;
     let array = [];
 
@@ -104,7 +105,7 @@ const Shop = () => {
           <ul>
             <Checkbox
               categories={categories}
-              handleFilters={filters => handleFilters(filters, 'category')}
+              handleFilters={(filters) => handleFilters(filters, 'category')}
             />
           </ul>
 
@@ -112,7 +113,7 @@ const Shop = () => {
           <div>
             <RadioBox
               prices={prices}
-              handleFilters={filters => handleFilters(filters, 'price')}
+              handleFilters={(filters) => handleFilters(filters, 'price')}
             />
           </div>
         </div>

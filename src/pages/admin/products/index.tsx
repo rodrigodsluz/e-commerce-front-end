@@ -7,10 +7,10 @@ import { getProducts, deleteProduct } from '../../../api/apiAdmin';
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
 
-  const { user, token } = isAuthenticated();
-
+  /*   const { user, token } = isAuthenticated();
+   */
   const loadProducts = () => {
-    getProducts().then(data => {
+    getProducts().then((data) => {
       if (data.error) {
         console.log(data.error);
       } else {
@@ -19,14 +19,14 @@ const ManageProducts = () => {
     });
   };
 
-  const destroy = productId => {
-    deleteProduct(productId, user._id, token).then(data => {
+  const destroy = (productId) => {
+    /*  deleteProduct(productId, user._id, token).then(data => {
       if (data.error) {
         console.log(data.error);
       } else {
         loadProducts();
       }
-    });
+    }); */
   };
 
   useEffect(() => {

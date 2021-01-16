@@ -16,7 +16,7 @@ const Profile = ({ match }) => {
     success: false,
   });
 
-  const { token } = isAuthenticated();
+  /* const { token } = isAuthenticated(); */
   const {
  name, email, password, error, success, } = values;
 
@@ -36,13 +36,13 @@ const Profile = ({ match }) => {
     // init(match.params.userId);
   }, []);
 
-  const handleChange = (name) => (e: { target: { value: any } }) => {
+  const handleChange = (name: string) => (e: { target: { value: any } }) => {
     setValues({ ...values, error: false, [name]: e.target.value });
   };
 
-  const clickSubmit = (e) => {
+  const clickSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    update(router.query.id, token, { name, email, password }).then((data) => {
+   /*  update(router.query.id, token, { name, email, password }).then((data) => {
       if (data.error) {
         // console.log(data.error);
         alert(data.error);
@@ -56,7 +56,7 @@ const Profile = ({ match }) => {
           });
         });
       }
-    });
+    }); */
   };
 
   const redirectUser = (success) => {

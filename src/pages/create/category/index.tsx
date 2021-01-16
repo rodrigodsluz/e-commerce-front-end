@@ -10,7 +10,7 @@ const AddCategory = () => {
   const [success, setSuccess] = useState(false);
 
   // destructure user and token from localstorage
-  const { user, token } = isAuthenticated();
+  // const { user, token } = isAuthenticated();
 
   const handleChange = (e) => {
     setError(false);
@@ -22,14 +22,14 @@ const AddCategory = () => {
     setError(false);
     setSuccess(false);
     // make request to api to create category
-    createCategory(user._id, token, { name }).then((data) => {
+    /* createCategory(user._id, token, { name }).then(data => {
       if (data.error) {
         setError(data.error);
       } else {
         setError(false);
         setSuccess(true);
       }
-    });
+    }); */
   };
 
   const newCategoryFom = () => (
@@ -51,7 +51,7 @@ const AddCategory = () => {
 
   const showSuccess = () => {
     if (success) {
-      return <h3 className="text-success">{name} is created</h3>;
+      return <h3 className="text-success">aaa is created</h3>;
     }
   };
 
@@ -70,7 +70,7 @@ const AddCategory = () => {
   return (
     <Layout
       title="Add a new category"
-      description={`G'day ${user.name}, ready to add a new category?`}
+      description={"G'day aaa, ready to add a new category?"}
       className="color: red"
     >
       <div className="row">

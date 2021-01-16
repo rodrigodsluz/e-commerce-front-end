@@ -4,9 +4,9 @@ import { Layout } from '../../../components';
 import { isAuthenticated } from '../../../api/auth';
 
 const AdminDashboard = () => {
-  const {
+  /* const {
     user: { email, role },
-  } = isAuthenticated();
+  } = isAuthenticated(); */
 
   const adminLinks = () => (
     <div className="card">
@@ -33,10 +33,10 @@ const AdminDashboard = () => {
       <h3 className="card-header">User Information</h3>
       <ul className="list-group">
         <li className="list-group-item">aaa</li>
-        <li className="list-group-item">{email}</li>
-        <li className="list-group-item">
+        <li className="list-group-item">aaa</li>
+        {/* <li className="list-group-item">
           {role === 1 ? 'Admin' : 'Registered User'}
-        </li>
+        </li> */}
       </ul>
     </div>
   );

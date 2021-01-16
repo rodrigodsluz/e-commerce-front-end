@@ -12,18 +12,20 @@ const Signin = () => {
     redirectToReferrer: false,
   });
 
-  const {
- email, password, loading, error, redirectToReferrer, } = values;
-  const { user } = isAuthenticated();
-
-  const handleChange = (name: string) => (event) => {
+  const { email, password, loading, error, redirectToReferrer 
+} = values;
+  /*   const { user } = isAuthenticated();
+   */
+  const handleChange = (name: string) => (event: {
+    target: { value: any };
+  }) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
   const clickSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
-    signin({ email, password }).then((data) => {
+    signin({ email, password }).then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
       } else {
@@ -73,22 +75,23 @@ const Signin = () => {
     </div>
   );
 
-  const showLoading = () => loading && (
+  const showLoading = () =>
+    loading && (
       <div className="alert alert-info">
         <h2>Loading...</h2>
       </div>
-    );
+  );
 
   const redirectUser = () => {
     const router = useRouter();
 
-    if (redirectToReferrer) {
+    /* if (redirectToReferrer) {
       if (user && user.role === 1) {
         router.push('/admin/dashboard');
       } else {
         router.push('/user/dashboard');
       }
-    }
+    } */
     if (isAuthenticated()) {
       router.push('/');
     }
